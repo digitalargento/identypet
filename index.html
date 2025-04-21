@@ -2,30 +2,37 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Registro de Mascota</title>
-  <link rel="stylesheet" href="css/style.css">
-  <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-storage-compat.js"></script>
+  <title>Registro de Mascotas</title>
 </head>
 <body>
-  <div class="container">
-    <h2>Registro de Mascota</h2>
-    <form id="pet-form">
-      <input type="text" id="qrCode" placeholder="Código QR" required><br>
-      <input type="text" id="nombre" placeholder="Nombre" required><br>
-      <input type="text" id="especie" placeholder="Especie" required><br>
-      <input type="text" id="raza" placeholder="Raza" required><br>
-      <select id="provincia" required><option value="">Provincia</option></select><br>
-      <select id="ciudad" required><option value="">Ciudad</option></select><br>
-      <input type="text" id="telefono" placeholder="Teléfono" required><br>
-      <input type="file" id="foto" accept="image/*"><br>
-      <button type="submit">Guardar</button>
-    </form>
-    <p id="status"></p>
-  </div>
-  <script src="js/firebase-config.js"></script>
-  <script src="js/form.js"></script>
+  <h2>Registrar Mascota</h2>
+  <form id="pet-form">
+    <input type="text" id="pet-id" placeholder="ID único">
+    <input type="text" id="pet-name" placeholder="Nombre de la mascota">
+    <button type="submit">Registrar</button>
+  </form>
+  <p id="status"></p>
+
+  <script>
+    document.getElementById('pet-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const id = document.getElementById('pet-id').value;
+      const name = document.getElementById('pet-name').value;
+
+      fetch('https://script.google.com/macros/s/AKfycbwkqAMIVKB3X_wL_lvdPlMOw47k1rGT5nh8UT9Jjq7Mvmpqv5VRUzM9FTClUPAdItVj/exec', {
+        method: 'POST',
+        body: JSON.stringify({ id, name }),
+        headers: { 'Content-Type': 'application/json' }
+      })
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('status').textContent = '¡Mascota registrada!';
+      })
+      .catch(err => {
+        console.error(err);
+        document.getElementById('status').textContent = 'Error al registrar.';
+      });
+    });
+  </script>
 </body>
 </html>

@@ -2,26 +2,29 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Mascota Identificada</title>
-  <link rel="stylesheet" href="css/style.css">
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-storage-compat.js"></script>
+  <title>Info de Mascota</title>
 </head>
 <body>
-  <div class="container">
-    <h2>Datos de la Mascota</h2>
-    <div id="pet-info">
-      <img id="pet-photo" src="" alt="Foto de la mascota" style="max-width: 200px; display: none;">
-      <p><strong>Nombre:</strong> <span id="nombre"></span></p>
-      <p><strong>Especie:</strong> <span id="especie"></span></p>
-      <p><strong>Raza:</strong> <span id="raza"></span></p>
-      <p><strong>Provincia:</strong> <span id="provincia"></span></p>
-      <p><strong>Ciudad:</strong> <span id="ciudad"></span></p>
-      <p><strong>Teléfono:</strong> <span id="telefono"></span></p>
-    </div>
-  </div>
-  <script src="js/firebase-config.js"></script>
-  <script src="js/pet.js"></script>
+  <h2>Información de la Mascota</h2>
+  <div id="info"></div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+
+    fetch(`https://script.google.com/macros/s/AKfycbwkqAMIVKB3X_wL_lvdPlMOw47k1rGT5nh8UT9Jjq7Mvmpqv5VRUzM9FTClUPAdItVj/exec?id=${id}`)
+      .then(res => res.json())
+      .then(data => {
+        if (data.error) {
+          document.getElementById('info').textContent = "Mascota no encontrada.";
+        } else {
+          document.getElementById('info').innerHTML = `<strong>ID:</strong> ${data.id}<br><strong>Nombre:</strong> ${data.name}`;
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        document.getElementById('info').textContent = "Error al obtener la información.";
+      });
+  </script>
 </body>
 </html>
