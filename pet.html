@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mascota Identificada</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-storage-compat.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h2>Datos de la Mascota</h2>
+    <div id="pet-info">
+      <img id="pet-photo" src="" alt="Foto de la mascota" style="max-width: 200px; display: none;">
+      <p><strong>Nombre:</strong> <span id="nombre"></span></p>
+      <p><strong>Especie:</strong> <span id="especie"></span></p>
+      <p><strong>Raza:</strong> <span id="raza"></span></p>
+      <p><strong>Provincia:</strong> <span id="provincia"></span></p>
+      <p><strong>Ciudad:</strong> <span id="ciudad"></span></p>
+      <p><strong>Teléfono:</strong> <span id="telefono"></span></p>
+    </div>
+  </div>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/pet.js"></script>
+</body>
+</html>
