@@ -12,7 +12,7 @@
     const params = new URLSearchParams(window.location.search);
     const id = params.get("id");
 
-    fetch(`https://script.google.com/macros/s/AKfycbwkqAMIVKB3X_wL_lvdPlMOw47k1rGT5nh8UT9Jjq7Mvmpqv5VRUzM9FTClUPAdItVj/exec?id=${id}`)
+    fetch(`https://script.google.com/macros/s/AKfycbwmsPh_Dwd969YZPHO70F6GSElWdHeu6MyTDrdgWAwDgzKGvlizZTwG7oKXIETwFsMx/exec?id=${id}`)
       .then(res => res.json())
       .then(data => {
         if (data.error) {
